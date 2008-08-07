@@ -1,0 +1,44 @@
+# You can define multiple datasets, which will be analysed separately. Each
+# must have data_uri, year_col, and month_col defined.
+# year_col and month_col are the columns in the downloaded data in which the
+# year and month for each row can be found.
+
+datasets:
+  global:
+    data_uri: ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_gl.txt
+    info_uri: 'http://www.esrl.noaa.gov/gmd/ccgg/trends/#global'
+    year_col: 0
+    month_col: 1
+  mauna_loa:
+    data_uri: ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_mlo.txt
+    info_uri: 'http://www.esrl.noaa.gov/gmd/ccgg/trends/'
+    year_col: 0
+    month_col: 1
+
+# Each dataset in the "datasets" section above should have an entry in the
+# twitter config. The entry should be a list of "tweets". Each tweet has a 
+# prefix, a suffix, a column to report, and a number of months to compare
+# back. So, if data_col is 3 and compare_months_back is 12, the latest data in 
+# column 3 will be twittered, with a comparison to the same data 12 rows above.
+
+#twitter:
+#  username: username_goes_here
+#  password: password_goes_here
+#  global:
+#    - prefix: Global CO2 levels
+#      suffix: a year before
+#      data_col: 3
+#      compare_months_back: 12
+#    - prefix: Seasonally-corrected global CO2 levels
+#      suffix: the previous month
+#      data_col: 4
+#      compare_months_back: 1
+#  mauna_loa:
+#    - prefix: CO2 levels on Mauna Loa
+#      suffix: a year before
+#      data_col: 4
+#      compare_months_back: 12
+#    - prefix: Seasonally-corrected CO2 levels on Mauna Loa
+#      suffix: the previous month
+#      data_col: 5
+#      compare_months_back: 1
