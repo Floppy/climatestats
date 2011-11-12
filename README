@@ -9,16 +9,26 @@ REQUIREMENTS
 ============
 
 Ruby 1.8 (not tested with 1.9 yet)
-'twitter' gem (http://twitter.rubyforge.org/)
+
+Gems:
+  twitter
+  twitter_oauth
+
+Run bundle to install gems
 
 USAGE
 =====
 
-To use the software, firstly copy config/config_example.yml to config/config.yml.
+1. Copy config/config_example.yml to config/config.yml.
 
-To enable twittering, uncomment the twitter lines and and enter your details. 
+2. Fill in the consumer key and secret in the twitter config. You can get these
+   by setting up an app at https://dev.twitter.com/apps/
+   
+3. Run bin/oauth.rb and follow the instructions.
 
-Once it's configured, run lib/co2_updates.rb, and you're away!
+4. From the oauth output, put the oauth token and secret into config.yml
+
+5. Run bin/co2_updates.rb, and you're away!
 
 DATA
 ====

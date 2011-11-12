@@ -1,38 +1,19 @@
-# Copyright (c) 2008 James Smith (www.floppy.org.uk)
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
-#
-# http://www.opensource.org/licenses/mit-license.php
+#!/usr/bin/env ruby
 
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'rubygems'
 require 'open-uri'
 require 'csv'
 require 'date'
-require 'yaml'
-require 'rubygems'
 require 'twitter'
+require 'configuration'
 
 def main
   # Get config file
-  load_config
   load_state
   # For each configuration
-  @@configs.each_pair do |name, config|
+  Configuration.datasets.each_pair do |name, config|
     # Get data
     print "fetching data\n"
     rawdata = open(config['data_uri']).read
@@ -54,12 +35,6 @@ def main
     end
     save_state
   end
-end
-
-def load_config
-  all_configs = YAML.load_file("#{File.dirname(__FILE__)}/../config/config.yml")
-  @@configs = all_configs['datasets']
-  @@twitter_config = all_configs['twitter']
 end
 
 def load_state
@@ -89,14 +64,14 @@ end
 
 def send_update_to_twitter(data, config_name, config)  
   print "twittering... "
-  if @@twitter_config.nil? or @@twitter_config[config_name].nil?
+  if Configuration.twitter.nil? or Configuration.twitter[config_name].nil?
     print "not configured\n"
   else
     # Get config data
     y = config['year_col']
     m = config['month_col']
     # For each tweet in the current configuration
-    @@twitter_config[config_name].each do |tweet|
+    Configuration.twitter[config_name].each do |tweet|
       col = tweet['data_col']
       # Create tweet
       current = data.last
@@ -107,8 +82,13 @@ def send_update_to_twitter(data, config_name, config)
       percentage = (difference.abs / previous[col].to_f) * 100
       tweet = "#{tweet['prefix']} in #{date.strftime("%B %Y")} were #{current[col]}ppm, #{direction} #{sprintf("%.2f", difference)}ppm (#{sprintf("%.1f", percentage)}%) from #{tweet['suffix']}."
       # Post
-      twitter ||= Twitter::Base.new(@@twitter_config['username'], @@twitter_config['password'])
-      twitter.post(tweet)
+      Twitter.configure do |config|
+        config.consumer_key = Configuration.twitter['consumer_key']
+        config.consumer_secret = Configuration.twitter['consumer_secret']
+        config.oauth_token = Configuration.twitter['oauth_token']
+        config.oauth_token_secret = Configuration.twitter['oauth_secret']
+      end
+      Twitter.update(tweet)
     end
     print "OK\n"
   end

@@ -21,24 +21,26 @@ datasets:
 # back. So, if data_col is 3 and compare_months_back is 12, the latest data in 
 # column 3 will be twittered, with a comparison to the same data 12 rows above.
 
-#twitter:
-#  username: username_goes_here
-#  password: password_goes_here
-#  global:
-#    - prefix: Global CO2 levels
-#      suffix: a year before
-#      data_col: 3
-#      compare_months_back: 12
-#    - prefix: Seasonally-corrected global CO2 levels
-#      suffix: the previous month
-#      data_col: 4
-#      compare_months_back: 1
-#  mauna_loa:
-#    - prefix: CO2 levels on Mauna Loa
-#      suffix: a year before
-#      data_col: 4
-#      compare_months_back: 12
-#    - prefix: Seasonally-corrected CO2 levels on Mauna Loa
-#      suffix: the previous month
-#      data_col: 5
-#      compare_months_back: 1
+twitter:
+  consumer_key: 
+  consumer_secret: 
+  oauth_token: 
+  oauth_secret: 
+  global:
+    - prefix: Global CO2 levels
+      suffix: a year before
+      data_col: 3
+      compare_months_back: 12
+    - prefix: Seasonally-corrected global CO2 levels
+      suffix: the previous month
+      data_col: 4
+      compare_months_back: 1
+  mauna_loa:
+    - prefix: CO2 levels on Mauna Loa
+      suffix: a year before
+      data_col: 4
+      compare_months_back: 12
+    - prefix: Seasonally-corrected CO2 levels on Mauna Loa
+      suffix: the previous month
+      data_col: 5
+      compare_months_back: 1
