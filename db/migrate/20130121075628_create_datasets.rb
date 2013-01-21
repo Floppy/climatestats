@@ -10,7 +10,6 @@ class CreateDatasets < ActiveRecord::Migration
       t.integer :data_column
       t.integer :compare_to
       t.string :units
-
       t.timestamps
     end
   end
