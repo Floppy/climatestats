@@ -1,7 +1,7 @@
 class Measurement < ActiveRecord::Base
   belongs_to :dataset
   attr_accessible :measured_on, :value
-  validates :measured_on, :uniqueness, :scope => [:dataset]
+  validates :measured_on, :uniqueness => {:scope => [:dataset]}
   
   after_create :tweet
 
