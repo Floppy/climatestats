@@ -20,12 +20,15 @@ class Measurement < ActiveRecord::Base
       percentage = (difference.abs / previous.value) * 100
       text += ", #{direction} #{sprintf("%.2f", difference)}#{dataset.units} (#{sprintf("%.1f", percentage)}%) from #{dataset.compare_to.months} months earlier."
     end
+    text
   end
   
   def tweet
     logger.info "Measurement: tweeting..."
     # Post
-    Twitter.update(textual_description)
+    if Rails.env.production?
+      Twitter.update(textual_description)
+    end
   end
 
 end
