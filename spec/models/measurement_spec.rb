@@ -5,6 +5,10 @@ describe Measurement do
   it 'should have a unique date within a dataset' do
     pending
   end
+
+  it 'should send a tweet when created' do
+    pending
+  end
   
   context 'with nothing to compare to' do
 
