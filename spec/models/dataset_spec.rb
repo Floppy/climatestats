@@ -20,7 +20,6 @@ describe Dataset do
       @dataset.measurements.first.value.should == 390.74
       @dataset.measurements.last.measured_on.should == Date.new(2012,11)
       @dataset.measurements.last.value.should == 393.65
-      
     end
     
     after :all do
