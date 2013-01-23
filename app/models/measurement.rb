@@ -1,9 +1,19 @@
 class Measurement < ActiveRecord::Base
   belongs_to :dataset
   attr_accessible :measured_on, :value
+
+  validates :value,       :presence => true
+  validates :measured_on, :presence => true
   #validates :measured_on, :uniqueness => {:scope => [:dataset]}
   
   after_create :tweet
+
+  # Only tweet by default in production mode
+  @@enable_tweets = Rails.env.production?
+
+  def self.enable_tweets=(value)
+    @@enable_tweets = value
+  end
 
   def measurement_for_comparison
     dataset.measurements.where(:measured_on => measured_on - dataset.compare_to.months).first
@@ -24,10 +34,9 @@ class Measurement < ActiveRecord::Base
   end
   
   def tweet
-    logger.info "Measurement: tweeting..."
-    # Post
-    if Rails.env.production?
-      Twitter.update(textual_description)
+    if @@enable_tweets == true
+      logger.info "Measurement: tweeting..."
+      Twitter.update(ActionView::Base.full_sanitizer.sanitize(textual_description))
     end
   end
 

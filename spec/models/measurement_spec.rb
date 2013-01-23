@@ -23,12 +23,26 @@ describe Measurement do
 
   context 'sending tweets' do
 
+    before :all do
+      #DatabaseCleaner.start
+      Measurement.enable_tweets = true
+    end
+
     it 'should send a tweet when created' do
-      pending
+      Twitter.should_receive(:update).with('Global CO2 levels in January 2013 were 100.0ppm').once
+      @measurement = FactoryGirl.create :measurement
     end
     
     it 'should not send a tweet if invalid' do
-      pending
+      Twitter.should_not_receive(:update)
+      lambda {
+        @measurement = FactoryGirl.create :measurement, :measured_on => nil
+      }
+    end
+    
+    after :all do
+      Measurement.enable_tweets = false
+      #DatabaseCleaner.clean
     end
     
   end
