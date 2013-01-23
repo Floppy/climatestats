@@ -4,7 +4,7 @@ describe Measurement do
   
   context 'testing validations' do
     before :all do
-      #DatabaseCleaner.start
+      DatabaseCleaner.start
       @dataset = FactoryGirl.create :dataset
       @measurement = FactoryGirl.create :measurement, :dataset => @dataset
     end
@@ -17,14 +17,14 @@ describe Measurement do
     end
     
     after :all do
-      #DatabaseCleaner.clean
+      DatabaseCleaner.clean
     end
   end
 
   context 'sending tweets' do
 
     before :all do
-      #DatabaseCleaner.start
+      DatabaseCleaner.start
       Measurement.enable_tweets = true
     end
 
@@ -42,7 +42,7 @@ describe Measurement do
     
     after :all do
       Measurement.enable_tweets = false
-      #DatabaseCleaner.clean
+      DatabaseCleaner.clean
     end
     
   end
@@ -50,7 +50,7 @@ describe Measurement do
   context 'with nothing to compare to' do
 
     before :all do
-      #DatabaseCleaner.start
+      DatabaseCleaner.start
       @measurement = FactoryGirl.create :measurement
     end
     
@@ -59,7 +59,7 @@ describe Measurement do
     end
     
     after :all do
-      #DatabaseCleaner.clean
+      DatabaseCleaner.clean
     end
 
   end
@@ -67,7 +67,7 @@ describe Measurement do
   context 'comparing back a year' do
 
     before :all do
-      #DatabaseCleaner.start
+      DatabaseCleaner.start
       @dataset = FactoryGirl.create :dataset
       m = FactoryGirl.create :measurement, :dataset => @dataset, :value => 110.0
       FactoryGirl.create :measurement, :dataset => @dataset, :measured_on => m.measured_on - 12.months
@@ -79,7 +79,7 @@ describe Measurement do
     end
     
     after :all do
-      #DatabaseCleaner.clean
+      DatabaseCleaner.clean
     end
 
   end
@@ -87,7 +87,7 @@ describe Measurement do
   context 'comparing back a month' do
 
     before :all do
-      #DatabaseCleaner.start
+      DatabaseCleaner.start
       @dataset = FactoryGirl.create :dataset_monthly
       m = FactoryGirl.create :measurement, :dataset => @dataset, :value => 110.0
       FactoryGirl.create :measurement, :dataset => @dataset, :measured_on => m.measured_on - 1.month
@@ -99,7 +99,7 @@ describe Measurement do
     end
     
     after :all do
-      #DatabaseCleaner.clean
+      DatabaseCleaner.clean
     end
 
   end

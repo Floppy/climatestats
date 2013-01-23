@@ -5,7 +5,7 @@ describe Dataset do
   context 'importing new data' do
     
     before :all do
-      #DatabaseCleaner.start
+      DatabaseCleaner.start
       @dataset = FactoryGirl.create :dataset
     end
     
@@ -24,7 +24,7 @@ describe Dataset do
     end
     
     after :all do
-      # => DatabaseCleaner.clean
+      DatabaseCleaner.clean
     end
 
   end
