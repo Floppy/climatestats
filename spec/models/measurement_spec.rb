@@ -2,8 +2,23 @@ require 'spec_helper'
 
 describe Measurement do
   
-  it 'should have a unique date within a dataset' do
-    pending
+  context 'testing validations' do
+    before :all do
+      #DatabaseCleaner.start
+      @dataset = FactoryGirl.create :dataset
+      @measurement = FactoryGirl.create :measurement, :dataset => @dataset
+    end
+    
+    it 'should have a unique date within a dataset' do
+      pending 're-adding the date validation breaks FactoryGirl for some reason'
+      m = FactoryGirl.create :measurement, :dataset => @dataset, :measured_on => @measurement.measured_on
+      m.should_not be_valid
+      puts m.errors.inspect
+    end
+    
+    after :all do
+      #DatabaseCleaner.clean
+    end
   end
 
   it 'should send a tweet when created' do
