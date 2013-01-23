@@ -21,8 +21,16 @@ describe Measurement do
     end
   end
 
-  it 'should send a tweet when created' do
-    pending
+  context 'sending tweets' do
+
+    it 'should send a tweet when created' do
+      pending
+    end
+    
+    it 'should not send a tweet if invalid' do
+      pending
+    end
+    
   end
   
   context 'with nothing to compare to' do
