@@ -18,7 +18,7 @@ class Measurement < ActiveRecord::Base
       difference = value - previous.value
       direction = difference < 0 ? "down" : "up";
       percentage = (difference.abs / previous.value) * 100
-      text += ", #{direction} #{sprintf("%.2f", difference)}#{dataset.units} (#{sprintf("%.1f", percentage)}%) from #{dataset.compare_to.months} months earlier."
+      text += ", #{direction} #{sprintf("%.2f", difference)}#{dataset.units} (#{sprintf("%.1f", percentage)}%) from #{dataset.compare_to} #{dataset.compare_to == 1 ? 'month' : 'months'} earlier."
     end
     text
   end
