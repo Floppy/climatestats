@@ -23,6 +23,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
