@@ -11,4 +11,4 @@ Feature: Graphs
   Scenario: Show a basic graph of a dataset
     Given a dataset exists
     When I view that dataset
-    Then I should see "Datasets#show"
+    Then I should see "Global CO<sub>2</sub> levels"
