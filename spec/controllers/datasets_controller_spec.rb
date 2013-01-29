@@ -11,6 +11,7 @@ describe DatasetsController do
 
   describe "GET 'show'" do
     it "returns http success" do
+      FactoryGirl.create(:dataset)
       get 'show', :id => 1
       response.should be_success
     end
