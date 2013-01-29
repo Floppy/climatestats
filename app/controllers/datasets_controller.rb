@@ -4,7 +4,6 @@ class DatasetsController < ApplicationController
 
   def show
     @dataset = Dataset.find(params[:id])
-    @data_x = @dataset.measurements.map { |m| m.measured_on.to_time.to_i}.to_json.html_safe
-    @data_y = @dataset.measurements.map { |m| m.value}.to_json.html_safe
+    @data = @dataset.measurements.map{|m| {x: m.measured_on.to_time.to_i*1000, y: m.value}}
   end
 end

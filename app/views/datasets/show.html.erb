@@ -1,14 +1,36 @@
 <h1><%= @dataset.fullname %></h1>
 
-<div id="holder" style="width:800px;height:500px">
+<div id="chart">
+  <svg style="height: 500px;"></svg>
+</div>
 
 <script>
-	var r = Raphael('holder');
-	chart = r.linechart(15, 0, 780, 490, <%= @data_x %>, [<%= @data_y %>, [300,400]], {axis: "0 0 1 1", colors: ["#FF0000", "transparent"]});
-	var axisItems = chart.axis[0].text.items
-    for( var i = 0, l = axisItems.length; i < l; i++ ) {
-       var date = new Date(parseInt(axisItems[i].attr("text"))*1000);
-       // using the excellent dateFormat code from Steve Levithan
-       axisItems[i].attr("text", dateFormat(date, "mm/yyyy"));
-    }
+	var data = [{
+		area: true,
+    values: <%= @data.to_json.html_safe %>,
+    key: "<%= @dataset.shortname %>",
+    color: "#ff7f0e"
+	}];
+
+	var chart;
+
+	nv.addGraph(function() {
+	  chart = nv.models.lineChart();
+
+		chart.xAxis.tickFormat(function(d) { return d3.time.format('%b %Y')(new Date(d)) });
+
+	  chart.yAxis.axisLabel('<%= @dataset.shortname %>(<%= @dataset.units %>)')
+			.tickFormat(d3.format(',.2f'));
+
+	  d3.select('#chart svg')
+			.datum(data)
+			.transition().duration(500)
+			.call(chart);
+
+	  nv.utils.windowResize(chart.update);
+
+	  chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+	  return chart;
+	});
 </script>
