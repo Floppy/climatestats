@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require raphael-min
+//= require g.raphael-min
+//= require g.line-min
+//= require date.format.1.2.3.min
 //= require_tree .
