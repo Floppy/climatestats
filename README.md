@@ -1,8 +1,11 @@
-CO2 Updates
-http://github.com/Floppy/co2updates
+[![Build Status](http://jenkins.theodi.org/job/ClimateStats-build-master/badge/icon)](http://jenkins.theodi.org/job/ClimateStats-build-master/)
+
+CO2 Updates: http://github.com/Floppy/co2updates
 
 Author: James Smith
+
 Email : james@floppy.org.uk
+
 Web   : http://www.floppy.org.uk
 
 REQUIREMENTS
@@ -11,8 +14,8 @@ REQUIREMENTS
 Ruby 1.8 (not tested with 1.9 yet)
 
 Gems:
-  twitter
-  twitter_oauth
+-  twitter
+-  twitter_oauth
 
 Run bundle to install gems
 
