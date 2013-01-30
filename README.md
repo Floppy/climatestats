@@ -1,3 +1,5 @@
+[![Build Status](http://jenkins.theodi.org/job/ClimateStats-build-master/badge/icon)](http://jenkins.theodi.org/job/ClimateStats-build-master/)
+
 CO2 Updates: http://github.com/Floppy/co2updates
 
 Author: James Smith
