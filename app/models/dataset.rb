@@ -5,6 +5,8 @@ class Dataset < ActiveRecord::Base
   attr_accessible :compare_to, :data_column, :data_uri, :fullname, :info_uri, :month_column, :shortname, :units, :year_column
   has_many :measurements, :order => :measured_on
   
+  validates :stub, :presence => true
+  
   def update
     # Get data
     logger.info "Dataset: fetching data for #{shortname}"
@@ -22,4 +24,8 @@ class Dataset < ActiveRecord::Base
     end
   end
   
+  def to_param
+    stub
+  end
+
 end

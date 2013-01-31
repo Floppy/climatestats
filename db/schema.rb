@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121075709) do
+ActiveRecord::Schema.define(:version => 20130131071222) do
 
   create_table "datasets", :force => true do |t|
     t.string   "shortname"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130121075709) do
     t.string   "units"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "stub"
   end
 
   create_table "measurements", :force => true do |t|

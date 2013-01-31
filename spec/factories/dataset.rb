@@ -1,6 +1,7 @@
 FactoryGirl.define do
 
   factory :dataset do
+    stub "global_co2"
     shortname "CO<sub>2</sub> (global)"
     fullname "Global CO<sub>2</sub> levels"
     data_uri "ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_gl.txt"
@@ -13,6 +14,7 @@ FactoryGirl.define do
   end
   
   factory :dataset_monthly, class: Dataset do
+    stub "adjusted_global_co2"
     shortname "Seasonally-corrected CO<sub>2</sub> (global)"
     fullname "Seasonally-corrected global CO<sub>2</sub> levels"
     data_uri "ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_gl.txt"

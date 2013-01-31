@@ -14,14 +14,14 @@ describe DatasetsController do
     before :all do
       DatabaseCleaner.start
       # Setup
-      @d = FactoryGirl.create(:dataset, :id => 1)
+      @d = FactoryGirl.create(:dataset)
       @m = FactoryGirl.create(:measurement, :dataset => @d)
     end
 
     describe "GET 'show'" do
       it "returns http success" do
         # Test result
-        get 'show', :id => 1
+        get 'show', :id => "global_co2"
         response.should be_success
         # Test variable assignment
         assigns(:dataset).should             == @d
@@ -42,7 +42,7 @@ describe DatasetsController do
     describe "GET 'show'" do
       it "raises RecordNotFound" do
         expect {
-          get 'show', :id => 1
+          get 'show', :id => "global_co2"
         }.to raise_error ActiveRecord::RecordNotFound
       end
     end

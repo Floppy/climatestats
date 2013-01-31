@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Dataset do
+
+  it 'should use stub as param' do
+    d = FactoryGirl.build(:dataset)
+    d.to_param.should == "global_co2"
+  end
   
   context 'importing new data' do
     
