@@ -9,12 +9,44 @@ describe DatasetsController do
     end
   end
 
-  describe "GET 'show'" do
-    it "returns http success" do
-      FactoryGirl.create(:dataset)
-      get 'show', :id => 1
-      response.should be_success
+  context 'when requesting a valid dataset' do
+
+    before :all do
+      DatabaseCleaner.start
+      # Setup
+      @d = FactoryGirl.create(:dataset, :id => 1)
+      @m = FactoryGirl.create(:measurement, :dataset => @d)
     end
+
+    describe "GET 'show'" do
+      it "returns http success" do
+        # Test result
+        get 'show', :id => 1
+        response.should be_success
+        # Test variable assignment
+        assigns(:dataset).should        == @d
+        assigns(:data).length.should    == 1
+        assigns(:data).first[:x].should == 1356998400000
+        assigns(:data).first[:y].should == 100
+      end
+    end
+    
+    after :all do
+      DatabaseCleaner.clean
+    end
+
+  end
+
+  context 'when requesting an invalid dataset' do
+
+    describe "GET 'show'" do
+      it "raises RecordNotFound" do
+        expect {
+          get 'show', :id => 1
+        }.to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+    
   end
 
 end
