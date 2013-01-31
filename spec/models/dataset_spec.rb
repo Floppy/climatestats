@@ -7,6 +7,60 @@ describe Dataset do
     d.to_param.should == "global_co2"
   end
   
+  context 'valid objects' do
+  
+    it 'must have a stub' do
+      d = FactoryGirl.build(:dataset, :stub => nil)
+      d.should_not be_valid
+    end
+  
+    it 'must have a shortname' do
+      d = FactoryGirl.build(:dataset, :shortname => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have a fullname' do
+      d = FactoryGirl.build(:dataset, :fullname => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have a data_uri' do
+      d = FactoryGirl.build(:dataset, :data_uri => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have a info_uri' do
+      d = FactoryGirl.build(:dataset, :info_uri => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have a year_column' do
+      d = FactoryGirl.build(:dataset, :year_column => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have a month_column' do
+      d = FactoryGirl.build(:dataset, :month_column => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have a data_column' do
+      d = FactoryGirl.build(:dataset, :data_column => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have a compare_to' do
+      d = FactoryGirl.build(:dataset, :compare_to => nil)
+      d.should_not be_valid
+    end
+
+    it 'must have units' do
+      d = FactoryGirl.build(:dataset, :units => nil)
+      d.should_not be_valid
+    end
+    
+  end
+
   context 'importing new data' do
     
     before :all do

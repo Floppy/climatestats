@@ -6,7 +6,16 @@ class Dataset < ActiveRecord::Base
   has_many :measurements, :order => :measured_on
   
   validates :stub, :presence => true
-  
+  validates :shortname, :presence => true 
+  validates :fullname, :presence => true 
+  validates :data_uri, :presence => true 
+  validates :info_uri, :presence => true 
+  validates :year_column, :presence => true 
+  validates :month_column, :presence => true 
+  validates :data_column, :presence => true 
+  validates :compare_to, :presence => true 
+  validates :units, :presence => true 
+    
   def update
     # Get data
     logger.info "Dataset: fetching data for #{shortname}"
