@@ -4,6 +4,7 @@ class DatasetsController < ApplicationController
 
   def show
     @dataset = Dataset.find(params[:id])
-    @data = @dataset.measurements.map{|m| {x: m.measured_on.to_time.to_i*1000, y: m.value}}
+    # Put measurements into graph format
+    @graphdata = @dataset.measurements.map{|m| {x: m.measured_on.to_time.to_i*1000, y: m.value}}
   end
 end

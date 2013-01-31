@@ -7,7 +7,7 @@
 <script>
 	var data = [{
 		area: true,
-    values: <%= @data.to_json.html_safe %>,
+    values: <%= @graphdata.to_json.html_safe %>,
     key: "<%= @dataset.shortname %>",
     color: "#ff7f0e"
 	}];

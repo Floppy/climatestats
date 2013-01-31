@@ -24,10 +24,10 @@ describe DatasetsController do
         get 'show', :id => 1
         response.should be_success
         # Test variable assignment
-        assigns(:dataset).should        == @d
-        assigns(:data).length.should    == 1
-        assigns(:data).first[:x].should == 1356998400000
-        assigns(:data).first[:y].should == 100
+        assigns(:dataset).should             == @d
+        assigns(:graphdata).length.should    == 1
+        assigns(:graphdata).first[:x].should == 1356998400000
+        assigns(:graphdata).first[:y].should == 100
       end
     end
     
