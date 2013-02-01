@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>ClimateStats</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<div class='container'>
+		<div class="navbar">
+		  <div class="navbar-inner">
+		    <a class="brand" href="#">ClimateStats</a>
+		    <ul class="nav">
+		    </ul>
+		  </div>
+		</div>
+		<%= yield %>
+		<footer>
+			&copy; 2013 <%= link_to "James Smith", 'http://floppy.org.uk' %>.
+			Code available on <%= link_to "Github", "https://github.com/Floppy/climatestats"%>.
+		</footer>
+	</div>
 </body>
 </html>

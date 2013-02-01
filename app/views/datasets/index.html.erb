@@ -1,10 +1,11 @@
 <h1>Datasets#index</h1>
 
-<ul>
-	<% @datasets.each do |x| %>
-		<li><%= link_to x.shortname, x %></li>
-	<% end %>
-	<% if @datasets.empty? %>
-		<li>Nothing to see here</li>
-	<% end %>
-</ul>
+<% if @datasets.empty? %>
+	<div class='alert alert-error'>Nothing to see here!</div>
+<% else %>
+	<ul>
+		<% @datasets.each do |x| %>
+			<li><%= link_to x.shortname, x %></li>
+		<% end %>
+	</ul>
+<% end %>
