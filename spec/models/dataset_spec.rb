@@ -12,51 +12,61 @@ describe Dataset do
     it 'must have a stub' do
       d = FactoryGirl.build(:dataset, :stub => nil)
       d.should_not be_valid
+      d.errors[:stub].should be_present
     end
   
     it 'must have a shortname' do
       d = FactoryGirl.build(:dataset, :shortname => nil)
       d.should_not be_valid
+      d.errors[:shortname].should be_present
     end
 
     it 'must have a fullname' do
       d = FactoryGirl.build(:dataset, :fullname => nil)
       d.should_not be_valid
+      d.errors[:fullname].should be_present
     end
 
     it 'must have a data_uri' do
       d = FactoryGirl.build(:dataset, :data_uri => nil)
       d.should_not be_valid
+      d.errors[:data_uri].should be_present
     end
 
     it 'must have a info_uri' do
       d = FactoryGirl.build(:dataset, :info_uri => nil)
       d.should_not be_valid
+      d.errors[:info_uri].should be_present
     end
 
     it 'must have a year_column' do
       d = FactoryGirl.build(:dataset, :year_column => nil)
       d.should_not be_valid
+      d.errors[:year_column].should be_present
     end
 
     it 'must have a month_column' do
       d = FactoryGirl.build(:dataset, :month_column => nil)
       d.should_not be_valid
+      d.errors[:month_column].should be_present
     end
 
     it 'must have a data_column' do
       d = FactoryGirl.build(:dataset, :data_column => nil)
       d.should_not be_valid
+      d.errors[:data_column].should be_present
     end
 
     it 'must have a compare_to' do
       d = FactoryGirl.build(:dataset, :compare_to => nil)
       d.should_not be_valid
+      d.errors[:compare_to].should be_present
     end
 
     it 'must have units' do
       d = FactoryGirl.build(:dataset, :units => nil)
       d.should_not be_valid
+      d.errors[:units].should be_present
     end
     
   end

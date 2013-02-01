@@ -4,6 +4,7 @@ class Measurement < ActiveRecord::Base
 
   validates :value,       :presence => true
   validates :measured_on, :presence => true
+  validates :dataset,     :presence => true
   #validates :measured_on, :uniqueness => {:scope => [:dataset]}
   
   after_create :tweet

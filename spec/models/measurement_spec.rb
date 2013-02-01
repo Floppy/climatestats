@@ -13,27 +13,24 @@ describe Measurement do
       pending 're-adding the date validation breaks FactoryGirl for some reason'
       m = FactoryGirl.create :measurement, :dataset => @dataset, :measured_on => @measurement.measured_on
       m.should_not be_valid
-      puts m.errors.inspect
     end
 
     it 'must have a value' do
       d = FactoryGirl.build(:measurement, :value => nil, :dataset => @dataset)
       d.should_not be_valid
-    end
-    
-    it 'must have a value' do
-      d = FactoryGirl.build(:measurement, :value => nil, :dataset => @dataset)
-      d.should_not be_valid
+      d.errors[:value].should be_present
     end
 
     it 'must have a date' do
       d = FactoryGirl.build(:measurement, :measured_on => nil, :dataset => @dataset)
       d.should_not be_valid
+      d.errors[:measured_on].should be_present
     end
 
     it 'must belong to a dataset' do
-      d = FactoryGirl.build(:measurement)
+      d = FactoryGirl.build(:measurement, :dataset => nil)
       d.should_not be_valid
+      d.errors[:dataset].should be_present
     end
 
     after :all do
