@@ -15,7 +15,27 @@ describe Measurement do
       m.should_not be_valid
       puts m.errors.inspect
     end
+
+    it 'must have a value' do
+      d = FactoryGirl.build(:measurement, :value => nil, :dataset => @dataset)
+      d.should_not be_valid
+    end
     
+    it 'must have a value' do
+      d = FactoryGirl.build(:measurement, :value => nil, :dataset => @dataset)
+      d.should_not be_valid
+    end
+
+    it 'must have a date' do
+      d = FactoryGirl.build(:measurement, :measured_on => nil, :dataset => @dataset)
+      d.should_not be_valid
+    end
+
+    it 'must belong to a dataset' do
+      d = FactoryGirl.build(:measurement)
+      d.should_not be_valid
+    end
+
     after :all do
       DatabaseCleaner.clean
     end
