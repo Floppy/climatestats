@@ -5,7 +5,7 @@ describe DatasetsController do
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
-      response.should be_success
+      assigns(:datasets).should_not be_empty
     end
   end
 
