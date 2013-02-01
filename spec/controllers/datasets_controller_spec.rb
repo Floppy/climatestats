@@ -2,11 +2,25 @@ require 'spec_helper'
 
 describe DatasetsController do
 
-  describe "GET 'index'" do
-    it "returns http success" do
-      get 'index'
-      assigns(:datasets).should_not be_empty
+  context 'listing datasets' do
+
+    before :all do
+      DatabaseCleaner.start
+      # Setup
+      @d = FactoryGirl.create(:dataset)
     end
+    
+    describe "GET 'index'" do
+      it "returns http success" do
+        get 'index'
+        assigns(:datasets).should_not be_empty
+      end
+    end
+
+    after :all do
+      DatabaseCleaner.clean
+    end
+
   end
 
   context 'when requesting a valid dataset' do
