@@ -5,6 +5,7 @@ gem 'rails', '~> 3.2.11'
 #gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'twitter'
 gem 'twitter_oauth'
+gem 'bootstrap-sass'
 
 # Gems used only for assets and not required
 # in production environments by default.
