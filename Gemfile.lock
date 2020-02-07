@@ -62,7 +62,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     autoprefixer-rails (9.7.4)
       execjs
-    backports (3.15.0)
+    backports (3.16.0)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
