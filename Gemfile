@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 6.0.2'
+gem 'rails', '~> 6.0.3'
 
 #gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'twitter'
